@@ -14,12 +14,11 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public Product create(ProductDTO productDTO){
-        Product product = Product.builder()
-                .name(productDTO.getName())
-                .amount(productDTO.getAmount())
-                .build();
-        return productRepository.save(product);
+    public Product create(ProductDTO dto){
+        return productRepository.save(Product.builder()
+                .name(dto.getName())
+                .amount(dto.getAmount())
+                .build());
     }
 
     public List<Product> readAll(){

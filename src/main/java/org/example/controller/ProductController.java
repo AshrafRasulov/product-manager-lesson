@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import lombok.AllArgsConstructor;
 import org.example.dto.ProductDTO;
 import org.example.entity.Product;
 import org.example.service.ProductService;
@@ -9,13 +10,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RestController
+@AllArgsConstructor
 public class ProductController {
-    private ProductService productService;
+    private final ProductService productService;
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<Product> create(@RequestBody ProductDTO productDTO){
-        return new ResponseEntity<>(productService.create(productDTO), HttpStatus.OK);
+        return new ResponseEntity<>(productService.create(productDTO),
+                HttpStatus.OK);
     }
 
     @GetMapping
